@@ -12,7 +12,7 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  filter(filter: any): Observable<ProductSummary> {
+  filter(filter: any): Observable<any> {
 
     let params = new HttpParams();
 
@@ -36,7 +36,7 @@ export class ProductService {
 
     return this.http.get(`${this.productsUrl}`, {
       params: params
-    }) as Observable<ProductSummary>;
+    }) as Observable<any>;
 
   }
 

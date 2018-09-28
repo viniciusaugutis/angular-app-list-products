@@ -2,17 +2,45 @@
   <div class="col-6">
     <div class="form-group">
       <label>Mercado alvo</label>
-      <ng-select class="custom"></ng-select>
+      <ng-select class="custom" [items]="marketOptions" [multiple]="true" [(ngModel)]="targetMarketsSelected"
+        notFoundMsg="Mercado não encontrada" placeholder="Mercado alvo"></ng-select>
     </div>
   </div>
   <div class="col-6">
     <div class="form-group">
       <label>Tecnologia</label>
-      <ng-select class="custom"></ng-select>
+      <ng-select class="custom" [items]="stackOptions" [multiple]="true" [(ngModel)]="stacksSelected" notFoundMsg="Tecnologia não encontrada"
+        placeholder="Tecnologia"></ng-select>
     </div>
   </div>
 </div>
 
 <div class="text-center">
-  <button class="btn btn-primary m-t-10">Pesquisar</button>
+  <button class="btn btn-primary m-t-10" (click)="searchProducts()">Pesquisar</button>
+</div>
+
+<div class="row">
+  <div class="col-12 col-md-6" *ngFor="let product of listProducts">
+    <div class="panel-product">
+      <h5>{{product.name}}</h5>
+      <p>
+        <label>Descrição: </label>
+        <span>{{product.description}}</span>
+      </p>
+
+      <label>Tecnologias:</label>
+      <ul>
+        <li *ngFor="let stack of product.stack">{{stack}}</li>
+      </ul>
+
+      <label>Mercado alvo:</label>
+      <ul>
+        <li *ngFor="let market of product.targetMarket">{{market}}</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="text-center" *ngIf="listProducts?.length == 0">
+  <h6>Não foram encontrados resultados</h6>
 </div>

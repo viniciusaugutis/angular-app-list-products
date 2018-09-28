@@ -13,3 +13,13 @@
 .text-center {
   text-align: center;
 }
+
+.label {
+  font-weight: bold;
+}
+
+.panel-product {
+  border: 1px solid orange;
+  margin: 10px;
+  padding: 5px;
+}
