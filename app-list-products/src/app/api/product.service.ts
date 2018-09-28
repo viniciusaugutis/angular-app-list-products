@@ -1,15 +1,14 @@
-
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ProductSummary } from '../core/model';
-
+import { environment } from './../../environments/environment';
 
 @Injectable()
 export class ProductService {
 
-  productsUrl = '/products';
+  productsUrl = `${environment.apiUrl}/products`;
 
   constructor(private http: HttpClient) { }
 
@@ -17,8 +16,8 @@ export class ProductService {
 
     let params = new HttpParams();
 
-    if (filter.market) {
-      params = params.append('market', filter.market);
+    if (filter.targetMarket) {
+      params = params.append('targetMarket', filter.targetMarket);
     }
 
     if (filter.stack) {

@@ -1,3 +1,5 @@
+import { ProductFilter } from './../../core/model';
+import { ProductService } from './../../api/product.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListProductsComponent implements OnInit {
 
-  constructor() { }
+  public productFilter = new ProductFilter();
+  constructor(
+    public productService: ProductService
+  ) { }
 
   ngOnInit() {
+
+    this.productFilter.targetMarket = [1];
+    this.productService.filter(this.productFilter).subscribe(response => {
+      console.log(response);
+    });
   }
 
 }
